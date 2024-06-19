@@ -103,9 +103,10 @@ async def register_function(msg: types.Message, state: FSMContext):
     kb_client.add(k)
     await state.set_state("register_2")
     if tg_user.get('language') == 'uz':
-        await msg.answer(text="Tugma orqali telefon raqamingizni yuboring 👇", reply_markup=kb_client)
+        await msg.answer(text="«TELEFON RAQAM📲» - tugmasi orqali telefon raqamingizni yuboring 👇",
+                         reply_markup=kb_client)
     else:
-        await msg.answer(text="Укажите свой номер телефона через кнопку 👇", reply_markup=kb_client)
+        await msg.answer(text="Отправьте свой номер телефона через кнопку «TELEFON RAQAM📲» 👇", reply_markup=kb_client)
 
 
 @dp.message_handler(state='register_2', content_types='contact')
