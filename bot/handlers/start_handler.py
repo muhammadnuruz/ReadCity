@@ -135,7 +135,7 @@ async def phone_handler(msg: types.Message, state: FSMContext):
             await bot.send_audio(chat_id=msg.from_user.id, audio=audio_file_id, protect_content=True)
             message = await msg.answer(text="Audio",
                                        reply_markup=await main_menu_buttons(msg.from_user.id))
-            await bot.delete_message(chat_id=msg.chat.id, message_id=message)
+            await message.delete()
         else:
             key, key2, key3 = data['qr_code'].split("_")
             book = ""
