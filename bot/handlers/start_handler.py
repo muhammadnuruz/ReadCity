@@ -10,6 +10,10 @@ from bot.buttons.text import back_main_menu, back_main_menu_ru, choice_language,
 from bot.dispatcher import dp, bot
 from main import admins
 
+audio_file_id_1 = 'CQACAgIAAxkBAAIBc2ZsQDWviJTcl5mRWTiTU6-RpChdAAIXSQACX3v5SkChV37J5Z5lNQQ'
+audio_file_id_2 = 'CQACAgIAAxkBAAIBdWZsQF8oeYEoa_Zs3hvoqmK61pSdAAIjSQACX3v5StkZXQN_HfsKNQQ'
+audio_file_id_3 = 'CQACAgIAAxkBAAIBd2ZsQHY55n3Wo1cRMNEuSz5mA2CHAAIlSQACX3v5Sn0mFW4xzobTNQQ'
+
 
 # @dp.message_handler(content_types=types.ContentType.AUDIO)
 # async def handle_audio(msg: types.Message):
@@ -120,9 +124,6 @@ async def phone_handler(msg: types.Message, state: FSMContext):
     tg_user = json.loads(
         requests.get(url=f"http://127.0.0.1:8000/telegram-users/chat_id/{msg.from_user.id}/").content)
     requests.patch(url=f"http://127.0.0.1:8000/telegram-users/update/{tg_user['id']}/", data=data)
-    audio_file_id_1 = 'CQACAgIAAxkBAAIBc2ZsQDWviJTcl5mRWTiTU6-RpChdAAIXSQACX3v5SkChV37J5Z5lNQQ'
-    audio_file_id_2 = 'CQACAgIAAxkBAAIBdWZsQF8oeYEoa_Zs3hvoqmK61pSdAAIjSQACX3v5StkZXQN_HfsKNQQ'
-    audio_file_id_3 = 'CQACAgIAAxkBAAIBd2ZsQHY55n3Wo1cRMNEuSz5mA2CHAAIlSQACX3v5Sn0mFW4xzobTNQQ'
     async with state.proxy() as data:
         if 'qr_code' in data and data['qr_code'].startswith("listening"):
             key, key2, key3, key4 = data['qr_code'].split("_")
