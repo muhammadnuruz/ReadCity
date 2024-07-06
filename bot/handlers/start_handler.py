@@ -13,14 +13,18 @@ from main import admins
 audio_file_id_1 = 'CQACAgIAAxkBAAIBc2ZsQDWviJTcl5mRWTiTU6-RpChdAAIXSQACX3v5SkChV37J5Z5lNQQ'
 audio_file_id_2 = 'CQACAgIAAxkBAAIBdWZsQF8oeYEoa_Zs3hvoqmK61pSdAAIjSQACX3v5StkZXQN_HfsKNQQ'
 audio_file_id_3 = 'CQACAgIAAxkBAAIBd2ZsQHY55n3Wo1cRMNEuSz5mA2CHAAIlSQACX3v5Sn0mFW4xzobTNQQ'
+audio_file_id_4_1 = 'CQACAgIAAxkBAAICdWaI26u3YbbTNaxGAsSUoaGD7cdPAAIdSQACX3v5SuFCZV8zAeBFNQQ'
+audio_file_id_4_2 = 'CQACAgIAAxkBAAICdmaI26t8s8qLwy7mbXQchsNWsvOzAAIfSQACX3v5Srg_JBASx1HKNQQ'
+audio_file_id_5 = 'DCQACAgIAAxkBAAICeWaI2-JKKLL24wVCjcNZx9lIkY6fAALlSgAC58dASA46Z_BaUqXrNQQ'
 
 
-# @dp.message_handler(content_types=types.ContentType.AUDIO)
-# async def handle_audio(msg: types.Message):
-#     audio = msg.audio
-#     file_id = audio.file_id
-#     print(file_id)
-#     await msg.reply(f"Audio fayl olindi, file_id: {file_id}")
+@dp.message_handler(content_types=types.ContentType.AUDIO)
+async def handle_audio(msg: types.Message):
+    audio = msg.audio
+    file_id = audio.file_id
+    print(file_id)
+    await msg.reply(f"Audio fayl olindi, file_id: {file_id}")
+
 
 @dp.message_handler(Text(equals=[back_main_menu, back_main_menu_ru]))
 async def back_main_menu_function_1(msg: types.Message):
@@ -134,6 +138,11 @@ async def phone_handler(msg: types.Message, state: FSMContext):
                 audio_file_id = audio_file_id_2
             elif int(key3) == 3:
                 audio_file_id = audio_file_id_3
+            elif int(key3) == 4:
+                audio_file_id = audio_file_id_4_2
+                await bot.send_audio(chat_id=msg.from_user.id, audio=audio_file_id_4_1, protect_content=True)
+            elif int(key3) == 5:
+                audio_file_id = audio_file_id_5
             await bot.send_audio(chat_id=msg.from_user.id, audio=audio_file_id, protect_content=True)
             message = await msg.answer(text="Audio",
                                        reply_markup=await main_menu_buttons(msg.from_user.id))
@@ -147,13 +156,16 @@ async def phone_handler(msg: types.Message, state: FSMContext):
                 book = 'Poor Millionaire'
             elif int(key2) == 3:
                 book = 'Titanic'
+            elif int(key2) == 4:
+                book = 'Jack and Beanstalk & Green eyes'
+            elif int(key2) == 5:
+                book = 'Japan'
             for admin in admins:
                 await bot.send_message(chat_id=admin, text=f"""
-    {book} - kitobi uchun yangi haridor 🆕
+{book} - kitobi uchun yangi haridor 🆕
 
-    Ism-Familiya: {data['full_name']}
-    Telefon raqam: {data['phone_number']}
-    """)
+Ism-Familiya: {data['full_name']}
+Telefon raqam: {data['phone_number']}""")
                 if tg_user.get('language') == 'uz':
                     await msg.answer(text="Tez orada siz bilan aloqaga chiqamiz 😊",
                                      reply_markup=ReplyKeyboardRemove())
