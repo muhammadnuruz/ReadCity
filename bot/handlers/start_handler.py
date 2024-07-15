@@ -51,17 +51,17 @@ async def start_handler(msg: types.Message, state: FSMContext):
     tg_user = json.loads(requests.get(url=f"http://127.0.0.1:8000/telegram-users/chat_id/{msg.from_user.id}/").content)
     deep_user = msg.get_args()
     if deep_user != "":
-        async with state.proxy() as data:
-            data["qr_code"] = deep_user
-        try:
-            if tg_user['detail']:
-                await state.set_state('language_1')
-                await msg.answer(text="""
+        await state.set_state('language_1')
+        await msg.answer(text="""
 Tilni tanlang
 
 -------------
 
 Выберите язык""", reply_markup=await language_buttons())
+        async with state.proxy() as data:
+            data["qr_code"] = deep_user
+        try:
+            if tg_user['detail']:
                 for admin in admins:
                     await bot.send_message(chat_id=admin, text=f"""
 Yangi user🆕
@@ -76,11 +76,7 @@ Username: @{msg.from_user.username}\n""", parse_mode='HTML')
                 }
                 requests.post(url=f"http://127.0.0.1:8000/telegram-users/create/", data=data)
         except KeyError:
-            await state.set_state('register_1')
-            if tg_user.get('language') == 'uz':
-                await msg.answer(text=f"Ism-Familiyangizni kiriting ✍️:")
-            else:
-                await msg.answer(text=f"Введите свое имя и фамилию ✍️:")
+            pass
 
 
 @dp.callback_query_handler(Text(startswith='language_'), state='language_1')
