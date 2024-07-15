@@ -156,18 +156,18 @@ async def phone_handler(msg: types.Message, state: FSMContext):
                 book = 'Jack and Beanstalk & Green eyes'
             elif int(key2) == 5:
                 book = 'Japan'
+            if tg_user.get('language') == 'uz':
+                await msg.answer(text="Tez orada siz bilan aloqaga chiqamiz 😊",
+                                 reply_markup=ReplyKeyboardRemove())
+            else:
+                await msg.answer(text="Мы скоро свяжемся с вами 😊",
+                                 reply_markup=ReplyKeyboardRemove())
             for admin in admins:
                 await bot.send_message(chat_id=admin, text=f"""
 {book} - kitobi uchun yangi haridor 🆕
 
 Ism-Familiya: {data['full_name']}
 Telefon raqam: {data['phone_number']}""")
-                if tg_user.get('language') == 'uz':
-                    await msg.answer(text="Tez orada siz bilan aloqaga chiqamiz 😊",
-                                     reply_markup=ReplyKeyboardRemove())
-                else:
-                    await msg.answer(text="Мы скоро свяжемся с вами 😊",
-                                     reply_markup=ReplyKeyboardRemove())
     await state.finish()
 
 
