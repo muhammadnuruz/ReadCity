@@ -121,21 +121,8 @@ async def phone_handler(msg: types.Message, state: FSMContext):
         "full_name": data['full_name'],
         "phone_number": data['phone_number']
     }
-    try:
-        response = requests.get(url=f"http://127.0.0.1:8001/telegram-users/chat_id/{msg.from_user.id}/")
-        response.raise_for_status()  # Bu so'rov muvaffaqiyatsiz bo'lsa xatolik chiqaradi
-        print(f"Response status code: {response.status_code}")
-        print(f"Response content: {response.content}")
-        tg_user = json.loads(response.content)
-    except requests.exceptions.RequestException as e:
-        print(f"Request failed: {e}")
-        await msg.answer("Xatolik yuz berdi, iltimos keyinroq urinib ko'ring.")
-        return
-    except json.decoder.JSONDecodeError as e:
-        print(f"JSON decoding failed: {e}")
-        print(f"Response content: {response.content}")
-        await msg.answer("Server javobini o'qishda xatolik yuz berdi.")
-        return
+    tg_user = json.loads(
+        requests.get(url=f"http://127.0.0.1:8001/telegram-users/chat_id/{msg.from_user.id}/").content)
     requests.patch(url=f"http://127.0.0.1:8001/telegram-users/update/{tg_user['id']}/", data=data)
     async with state.proxy() as data:
         if 'qr_code' in data and data['qr_code'].startswith("listening"):
