@@ -30,7 +30,7 @@ async def advert_handler(msg: types.Message, state: FSMContext):
 @dp.message_handler(state='advert', content_types=ContentType.ANY)
 async def get_user_id_for_send_to_user(msg: types.Message, state: FSMContext):
     await state.finish()
-    users = json.loads(requests.get(f"http://127.0.0.1:8000/telegram-users/").content)['results']
+    users = json.loads(requests.get(f"http://127.0.0.1:8001/telegram-users/").content)['results']
     suc = 0
     session = await msg.answer(text="✅ Xabar yuborish boshlandi!")
     for user in users:
@@ -61,7 +61,7 @@ async def send_forward(msg: types.Message, state: FSMContext):
 @dp.message_handler(state='send_forward', content_types=ContentType.ANY)
 async def forward_txt(msg: types.Message, state: FSMContext):
     await state.finish()
-    users = json.loads(requests.get(f"http://127.0.0.1:8000/telegram-users/").content)['results']
+    users = json.loads(requests.get(f"http://127.0.0.1:8001/telegram-users/").content)['results']
     suc = 0
     session = await msg.answer(text="✅ Xabar yuborish boshlandi!")
     for user in users:
