@@ -8,7 +8,7 @@ from bot.buttons.text import back_main_menu, adverts, none_advert, forward_adver
 
 
 async def main_menu_buttons(chat_id: int):
-    tg_user = json.loads(requests.get(url=f"http://127.0.0.1:8000/telegram-users/chat_id/{chat_id}/").content)
+    tg_user = json.loads(requests.get(url=f"http://127.0.0.1:8001/telegram-users/chat_id/{chat_id}/").content)
     if tg_user['language'] == 'uz':
         design = [
             [choice_language]
@@ -21,7 +21,7 @@ async def main_menu_buttons(chat_id: int):
 
 
 async def back_main_menu_button(chat_id: int):
-    tg_user = json.loads(requests.get(url=f"http://127.0.0.1:8000/telegram-users/chat_id/{chat_id}/").content)
+    tg_user = json.loads(requests.get(url=f"http://127.0.0.1:8001/telegram-users/chat_id/{chat_id}/").content)
     if tg_user['language'] == 'uz':
         design = [[back_main_menu]]
     else:
