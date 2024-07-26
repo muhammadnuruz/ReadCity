@@ -23,7 +23,7 @@ async def handle_audio(msg: types.Message):
     audio = msg.audio
     file_id = audio.file_id
     print(file_id)
-    await msg.reply(f"Audio fayl olindi, file_id: {file_id}")
+    await msg.reply(file_id)
 
 
 @dp.message_handler(Text(equals=[back_main_menu, back_main_menu_ru]))
