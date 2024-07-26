@@ -10,11 +10,11 @@ from bot.buttons.text import back_main_menu, back_main_menu_ru, choice_language,
 from bot.dispatcher import dp, bot
 from main import admins
 
-audio_file_id_1 = 'CQACAgIAAxkBAAIBc2ZsQDWviJTcl5mRWTiTU6-RpChdAAIXSQACX3v5SkChV37J5Z5lNQQ'
-audio_file_id_2 = 'CQACAgIAAxkBAAIBdWZsQF8oeYEoa_Zs3hvoqmK61pSdAAIjSQACX3v5StkZXQN_HfsKNQQ'
-audio_file_id_3 = 'CQACAgIAAxkBAAIBd2ZsQHY55n3Wo1cRMNEuSz5mA2CHAAIlSQACX3v5Sn0mFW4xzobTNQQ'
-audio_file_id_4_1 = 'CQACAgIAAxkBAAICdWaI26u3YbbTNaxGAsSUoaGD7cdPAAIdSQACX3v5SuFCZV8zAeBFNQQ'
-audio_file_id_4_2 = 'CQACAgIAAxkBAAICdmaI26t8s8qLwy7mbXQchsNWsvOzAAIfSQACX3v5Srg_JBASx1HKNQQ'
+audio_file_id_1 = 'CQACAgIAAxkBAAIDrWajhQMzEmhTQiYGTo-4jGZiFMoXAALFTAACeKEQSYg3QpuyKqrBNQQ'
+audio_file_id_2 = 'CQACAgIAAxkBAAIDr2ajhUJX8Rtshvm0_q0OTscOIV_WAALPTAACeKEQSfXO0gAB84LkzzUE'
+audio_file_id_3 = 'CQACAgIAAxkBAAIDsWajhZm8sVLW9-HLqKADxmNhuZZIAALRTAACeKEQSbqC9PRBb3LINQQ'
+audio_file_id_4_1 = 'CQACAgIAAxkBAAIDs2ajhgqWSfePVpRupCK69N6FR4NDAALGTAACeKEQSWc4I6U7Twe4NQQ'
+audio_file_id_4_2 = 'CQACAgIAAxkBAAIDtWajhiT9o-nXk0SW3sv6V0FnxpMfAALLTAACeKEQSeqlaxiU3fASNQQQ'
 audio_file_id_5 = 'CQACAgIAAxkBAAICeWaI2-JKKLL24wVCjcNZx9lIkY6fAALlSgAC58dASA46Z_BaUqXrNQQ'
 
 
