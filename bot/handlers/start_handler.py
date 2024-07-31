@@ -133,13 +133,13 @@ async def register_function(msg: types.Message, state: FSMContext):
 async def phone_handler(msg: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['phone_number'] = msg.contact.phone_number
-    data = {
+    s_data = {
         "full_name": data['full_name'],
         "phone_number": data['phone_number']
     }
     tg_user = json.loads(
         requests.get(url=f"http://127.0.0.1:8001/telegram-users/chat_id/{msg.from_user.id}/").content)
-    requests.patch(url=f"http://127.0.0.1:8001/telegram-users/update/{tg_user['id']}/", data=data)
+    requests.patch(url=f"http://127.0.0.1:8001/telegram-users/update/{tg_user['id']}/", data=s_data)
     await state.set_state('register_3')
     if tg_user.get('language') == 'uz':
         await msg.answer(text=f"{data['book']} - kitobimiz uchun qaysi hizmatdan foydalanmoxchisiz?",
