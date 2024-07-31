@@ -41,9 +41,9 @@ async def back_main_menu_function_1(msg: types.Message):
                     state=['register_3'])
 async def back_main_menu_function_1(msg: types.Message, state: FSMContext):
     if msg.text == back_main_menu:
-        await msg.answer(text=f"Asosiy menu🏠", reply_markup=await main_menu_buttons(msg.from_user.id))
+        await msg.answer(text=f"Asosiy menu🏠", reply_markup=ReplyKeyboardRemove())
     else:
-        await msg.answer(text=f"Главное меню🏠", reply_markup=await main_menu_buttons(msg.from_user.id))
+        await msg.answer(text=f"Главное меню🏠", reply_markup=ReplyKeyboardRemove())
     await state.finish()
 
 
@@ -156,10 +156,10 @@ async def service_handler(msg: types.Message, state: FSMContext):
     if msg.text == buy_book or msg.text == buy_book_ru:
         if msg.text == buy_book:
             await msg.answer(text="Ariza qabul qilindi!\n\nTez orada siz bilan aloqaga chiqamiz 😊",
-                             reply_markup=await main_menu_buttons(msg.from_user.id))
+                             reply_markup=ReplyKeyboardRemove())
         else:
             await msg.answer(text="Заявка принята!\n\nМы скоро свяжемся с вами 😊",
-                             reply_markup=await main_menu_buttons(msg.from_user.id))
+                             reply_markup=ReplyKeyboardRemove())
         for admin in admins:
             await bot.send_message(chat_id=admin, text=f"""
 {data['book']} - kitobi uchun yangi haridor 🆕
@@ -180,7 +180,7 @@ Telefon raqam: {data['phone_number']}""")
             audio_file_id = audio_file_id_5
         await bot.send_audio(chat_id=msg.from_user.id, audio=audio_file_id, protect_content=True)
         message = await msg.answer(text="Audio",
-                                   reply_markup=await main_menu_buttons(msg.from_user.id))
+                                   reply_markup=ReplyKeyboardRemove())
         await message.delete()
     await state.finish()
 
