@@ -186,15 +186,14 @@ Telefon raqam: {data['phone_number']}""")
 
 
 @dp.message_handler(Text(equals=[choice_language, choice_language_ru]))
-async def change_language_function_1(msg: types.Message, state: FSMContext):
-    await state.set_state('language_2')
+async def change_language_function_1(msg: types.Message):
     if msg.text == choice_language:
         await msg.answer(text="Tilni tanlang", reply_markup=await language_buttons())
     else:
         await msg.answer(text="Выберите язык", reply_markup=await language_buttons())
 
 
-@dp.callback_query_handler(Text(startswith='language_'), state='language_2')
+@dp.callback_query_handler(Text(startswith='language_'))
 async def language_function_1(call: types.CallbackQuery, state: FSMContext):
     tg_user = json.loads(requests.get(url=f"http://127.0.0.1:8001/telegram-users/chat_id/{call.from_user.id}/").content)
     data = {
