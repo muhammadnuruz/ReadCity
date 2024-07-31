@@ -4,7 +4,7 @@ import requests
 from aiogram.types import ReplyKeyboardMarkup
 
 from bot.buttons.text import back_main_menu, adverts, none_advert, forward_advert, back_admin_menu, back_main_menu_ru, \
-    choice_language, choice_language_ru
+    choice_language, choice_language_ru, audio_book, buy_book, audio_book_ru, buy_book_ru
 
 
 async def main_menu_buttons(chat_id: int):
@@ -47,4 +47,19 @@ async def advert_menu_buttons():
         [none_advert, forward_advert],
         [back_admin_menu]
     ]
+    return ReplyKeyboardMarkup(keyboard=design, resize_keyboard=True)
+
+
+async def service_menu_buttons(chat_id: int):
+    tg_user = json.loads(requests.get(url=f"http://127.0.0.1:8001/telegram-users/chat_id/{chat_id}/").content)
+    if tg_user['language'] == 'uz':
+        design = [
+            [audio_book, buy_book],
+            [back_main_menu]
+        ]
+    else:
+        design = [
+            [audio_book_ru, buy_book_ru],
+            [back_main_menu_ru]
+        ]
     return ReplyKeyboardMarkup(keyboard=design, resize_keyboard=True)
