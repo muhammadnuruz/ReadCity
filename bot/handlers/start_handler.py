@@ -38,7 +38,7 @@ async def back_main_menu_function_1(msg: types.Message):
 
 
 @dp.message_handler(Text(equals=[back_main_menu, back_main_menu_ru]),
-                    state=['test_performance_1', 'test_performance_2'])
+                    state=['register_3'])
 async def back_main_menu_function_1(msg: types.Message, state: FSMContext):
     if msg.text == back_main_menu:
         await msg.answer(text=f"Asosiy menu🏠", reply_markup=await main_menu_buttons(msg.from_user.id))
@@ -182,7 +182,7 @@ Telefon raqam: {data['phone_number']}""")
         message = await msg.answer(text="Audio",
                                    reply_markup=await main_menu_buttons(msg.from_user.id))
         await message.delete()
-        await state.finish()
+    await state.finish()
 
 
 @dp.message_handler(Text(equals=[choice_language, choice_language_ru]))
