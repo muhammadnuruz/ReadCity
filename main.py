@@ -13,5 +13,5 @@ async def on_startup(dp):
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(on_startup(dp))
+    loop.run_until_complete(on_startup(dp)
     executor.start_polling(dp, skip_updates=True)
